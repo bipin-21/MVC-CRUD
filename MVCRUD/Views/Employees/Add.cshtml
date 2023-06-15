@@ -1,0 +1,98 @@
+﻿@model MVCRUD.Models.AddEmployeeViewModel
+@{
+    ViewData["Title"] = "Add Page";
+}
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Employees" asp-action="Index">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Add">Add Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="DeletedRecord" asp-action="Index">Restore Employee</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<h1 style="text-align:center">Add Employee Details</h1>
+<form method="post" action="Add" class="mt-5">
+    <div class="mb-3">
+        <label for="" class="form-label">Username</label>
+        <input type="text" class="form-control" asp-for="Username" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="Password" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Date Of Birth</label>
+        <input type="date" class="form-control" asp-for="DOB" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Email Address</label>
+        <input type="email" class="form-control" asp-for="Email" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Address</label>
+        <input type="text" class="form-control" asp-for="Address" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Phone Number</label>
+        <input type="text" class="form-control" asp-for="Phone" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Gender</label>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="gender" value="Male" asp-for="Gender" required>
+                    <label class="form-check-label">Male</label>
+                </div>
+            </div>
+            <div class="col-sm-2" style="margin-left:-6px">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="gender" value="Female" asp-for="Gender" required>
+                    <label class="form-check-label">Female</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Skills</label>
+        <div class="row" style="width:100%">
+            <div class="col-sm-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="Python" value="true" asp-for="Python">
+                    <label class="form-check-label">Python</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="Java" value="true" asp-for="Java">
+                    <label class="form-check-label">Java</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="CPlusPLus" value="true" asp-for="CPlusPlus">
+                    <label class="form-check-label">C++</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+

@@ -1,0 +1,110 @@
+﻿@model List<MVCRUD.Models.Domain.Employee>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Employees" asp-action="Index">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Add">Add Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="DeletedRecord" asp-action="Index">Restore Employee</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<h1 style="text-align:center">Deleted Employees Details</h1>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Date of Birth</th>
+            <th>Email Address</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Skills</th>
+            <th>Gender</th>
+            <th colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Username</td>
+                <td>
+                    @for (int i = 1; i <= employee.Password.Length; i++)
+                    {
+                        <h5 style="display:inline">*</h5>
+                    }
+                </td>
+
+                <td>@employee.DOB.ToString("dd-MM-yyyy")</td>
+                <td>@employee.Email</td>
+                <td>@employee.Address</td>
+                <td>@employee.Phone</td>
+                <td>
+                    @if (employee.Python == "true" && employee.Java == "true" && employee.CPlusPlus == "true")
+                    {
+                        <p>Python, Java and C++</p>
+                    }
+                    else if (employee.Python == "true" && employee.Java == "true" && employee.CPlusPlus != "true")
+                    {
+                        <p>Python and Java</p>
+                    }
+                    else if (employee.Python == "true" && employee.Java != "true" && employee.CPlusPlus == "true")
+                    {
+                        <p>Python and C++</p>
+                    }
+                    else if (employee.Python != "true" && employee.Java == "true" && employee.CPlusPlus == "true")
+                    {
+                        <p>Java and C++</p>
+                    }
+                    else if (employee.Python == "true" && employee.Java != "true" && employee.CPlusPlus != "true")
+                    {
+                        <p>Python</p>
+                    }
+                    else if (employee.Python != "true" && employee.Java == "true" && employee.CPlusPlus != "true")
+                    {
+                        <p>Java</p>
+                    }
+                    else if (employee.Python != "true" && employee.Java != "true" && employee.CPlusPlus == "true")
+                    {
+                        <p>C++</p>
+                    }
+                    else
+                    {
+                        <p>No skills for @employee.Username</p>
+                    }
+                </td>
+                <td>@employee.Gender</td>
+
+                <td>
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <a style="color:white; text-decoration:none" asp-action="Recover" asp-route-id="@employee.Id" >Recover</a>
+                    </button>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <a style="color:white; text-decoration:none" asp-action="Delete" asp-route-id="@employee.Id">Hard Delete</a>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
